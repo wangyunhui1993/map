@@ -1,6 +1,14 @@
 <template>
     <div class="container">
-		<div id="container" style="height: 100%"></div>
+		<div style="width: 50%;height: 600px;float: left;">
+			<div id="container" style="height: 100%"></div>
+		</div>
+		<div style="width: 50%;float: left;height: 500px;">
+			<div id="right1" style="height:200px ;"></div>
+			<div id="right2" style="height:200px ;"></div>
+			<div id="right3" style="height:200px ;"></div>
+		</div>
+		
     </div>
 </template>
 <script>
@@ -14,16 +22,163 @@
 	    {name: '徐州东动车运用所', value: 100},
 	];
 	
+	
+	var optionRight1 = {
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:['扇A','扇B','扇C','扇D','扇E']
+    },
+    series: [
+        {
+            name:'扇形统计',
+            type:'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+                normal: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        fontSize: '16',
+                        fontWeight: 'bold'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:[
+                {value:335, name:'扇A'},
+                {value:310, name:'扇B'},
+                {value:234, name:'扇C'},
+                {value:135, name:'扇D'},
+                {value:1548, name:'扇E'}
+            ]
+        }
+    ]
+};
+
+
+var optionRight2 = {
+    title: {
+        text: '世界人口总量',
+        subtext: ''
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2011年']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['列A','列B','列C','列D','列E','数值(万)']
+    },
+    series: [
+        {
+            name: '2011年',
+            type: 'bar',
+            data: [18203, 23489, 29034, 104970, 131744, 630230],
+			itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 1, 0,
+                        [
+                            {offset: 0, color: 'blue'},
+                            {offset: 0.33, color: 'yellow'},
+                            {offset: 0.66, color: 'orange'},
+							{offset: 1, color: 'red'}
+                        ]
+                    )
+                },
+                emphasis: {
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 0, 1,
+                        [
+                            {offset: 0, color: '#2378f7'},
+                            {offset: 0.7, color: '#2378f7'},
+                            {offset: 1, color: '#83bff6'}
+                        ]
+                    )
+                }
+            },
+        },
+    ]
+};
+
+	
+	
+	
+	
+	
 	var geoCoordMap = {
 	    '南京动车运用所':[118.77254,32.103729],
 	    '南京南动车运用所':[118.76094,31.945879],
 	    '合肥南动车运用所':[117.272538,31.800093],
 	    '徐州东动车运用所':[117.320925,34.21357],
 	};
-	var convertData = function (data) {
+	
+	
+	
+	
+	var data1 = [
+	    {name: '暴雨1', value: 100},
+	    {name: '暴雨2', value: 100},
+	    {name: '暴雨3', value: 100},
+	    {name: '暴雨4', value: 100},
+	];
+	
+	var geoCoordMap1 = {
+	    '暴雨1':[117.866361,32.264109],
+	    '暴雨2':[117.39723,32.178089],
+	    '暴雨3':[118.123923,31.974443],
+	    '暴雨4':[118.00894,32.443703],
+	};
+	
+	
+	var data2 = [
+	    {name: '台风1', value: 100},
+	    {name: '台风2', value: 100},
+	    {name: '台风3', value: 100},
+	    {name: '台风4', value: 100},
+	];
+	
+	var geoCoordMap2 = {
+	    '台风':[118.298697,32.642396],
+	    '台风2':[117.627196,32.619043],
+	    '台风3':[117.907755,32.236748],
+	    '台风4':[117.719182,32.357855],
+	};
+	
+	
+	
+	var convertData = function (data,map) {
 	    var res = [];
 	    for (var i = 0; i < data.length; i++) {
-	        var geoCoord = geoCoordMap[data[i].name];
+	        var geoCoord = map[data[i].name];
 	        if (geoCoord) {
 	            res.push({
 	                name: data[i].name,
@@ -77,9 +232,10 @@
 	    bmap: {
 	        center: [118.114129, 32.500339],
 	        zoom: 8,
-	        roam: true,
+	        roam: true,    //鼠标拖动
 	        mapStyle: {
 	            styleJson: [
+					// 水的颜色
 	                    {
 	                        "featureType": "water",
 	                        "elementType": "all",
@@ -87,6 +243,7 @@
 	                            "color": "#044161"
 	                        }
 	                    },
+						// 陆地颜色
 	                    {
 	                        "featureType": "land",
 	                        "elementType": "all",
@@ -101,13 +258,15 @@
 	                            "color": "#064f85"
 	                        }
 	                    },
+						// 显示铁路
 	                    {
 	                        "featureType": "railway",
 	                        "elementType": "all",
 	                        "stylers": {
-	                            "visibility": "off"
+	                            "visibility": "on"
 	                        }
 	                    },
+						// 显示高速
 	                    {
 	                        "featureType": "highway",
 	                        "elementType": "geometry",
@@ -115,14 +274,16 @@
 	                            "color": "#004981"
 	                        }
 	                    },
-	                    {
-	                        "featureType": "highway",
-	                        "elementType": "geometry.fill",
-	                        "stylers": {
-	                            "color": "#005b96",
-	                            "lightness": 1
-	                        }
-	                    },
+						// 显示公路
+// 	                    {
+// 	                        "featureType": "highway",
+// 	                        "elementType": "geometry.fill",
+// 	                        "stylers": {
+// 	                            "color": "#005b96",
+// 	                            "lightness": 1
+// 	                        }
+// 	                    },
+						// 显示省道国道标志
 	                    {
 	                        "featureType": "highway",
 	                        "elementType": "labels",
@@ -187,6 +348,7 @@
 	                            "visibility": "off"
 	                        }
 	                    },
+						// 显示省的轮廓
 	                    {
 	                        "featureType": "boundary",
 	                        "elementType": "geometry.fill",
@@ -201,48 +363,49 @@
 	                            "color": "#1a5787"
 	                        }
 	                    },
+						// 显示城市名
 	                    {
 	                        "featureType": "label",
 	                        "elementType": "all",
 	                        "stylers": {
-	                            "visibility": "off"
+	                            "visibility": "on"
 	                        }
 	                    }
 	            ]
 	        }
 	    },
 	    series : [
+// 	        {
+// 	            name: 'pm2.5',
+// 	            type: 'scatter',
+// 	            coordinateSystem: 'bmap',
+// 	            data: convertData(data),
+// 	            symbolSize: function (val) {
+// 	                return val[2] / 10;
+// 	            },
+// 	            label: {
+// 	                normal: {
+// 	                    formatter: '{b}',
+// 	                    position: 'right',
+// 	                    show: false
+// 	                },
+// 	                emphasis: {
+// 	                    show: true
+// 	                }
+// 	            },
+// 	            itemStyle: {
+// 	                normal: {
+// 	                    color: '#ddb926'
+// 	                }
+// 	            }
+// 	        },
 	        {
-	            name: 'pm2.5',
-	            type: 'scatter',
-	            coordinateSystem: 'bmap',
-	            data: convertData(data),
-	            symbolSize: function (val) {
-	                return val[2] / 10;
-	            },
-	            label: {
-	                normal: {
-	                    formatter: '{b}',
-	                    position: 'right',
-	                    show: false
-	                },
-	                emphasis: {
-	                    show: true
-	                }
-	            },
-	            itemStyle: {
-	                normal: {
-	                    color: '#ddb926'
-	                }
-	            }
-	        },
-	        {
-	            name: 'Top 5',
+	            name: '动车所',
 	            type: 'effectScatter',
 	            coordinateSystem: 'bmap',
 	            data: convertData(data.sort(function (a, b) {
 	                return b.value - a.value;
-	            }).slice(0, 6)),
+	            }).slice(0, 6),geoCoordMap),
 	            symbolSize: function (val) {
 	                return val[2] / 10;
 	            },
@@ -263,24 +426,93 @@
 	                    color: '#f4e925',
 	                    shadowBlur: 10,
 	                    shadowColor: '#333'
+						
 	                }
 	            },
 	            zlevel: 1
 	        },
-	        {
-	            type: 'custom',
-	            coordinateSystem: 'bmap',
-	            renderItem: renderItem,
-	            itemStyle: {
-	                normal: {
-	                    opacity: 0.5
-	                }
-	            },
-	            animation: false,
-	            silent: true,
-	            data: [0],
-	            z: -10
-	        }
+			
+			
+			{
+			    name: '红色',
+			    type: 'effectScatter',
+			    coordinateSystem: 'bmap',
+			    data: convertData(data1.sort(function (a, b) {
+			        return b.value - a.value;
+			    }).slice(0, 6),geoCoordMap1),
+			    symbolSize: function (val) {
+			        return val[2] / 10;
+			    },
+			    showEffectOn: 'emphasis',
+			    rippleEffect: {
+			        brushType: 'stroke'
+			    },
+			    hoverAnimation: true,
+			    label: {
+			        normal: {
+			            formatter: '{b}',
+			            position: 'right',
+			            show: true
+			        }
+			    },
+			    itemStyle: {
+			        normal: {
+			            color: 'red',
+			            shadowBlur: 10,
+			            shadowColor: '#333'
+			        }
+			    },
+			    zlevel: 1
+			},
+			
+			
+			{
+			    name: '红色',
+			    type: 'effectScatter',
+			    coordinateSystem: 'bmap',
+			    data: convertData(data2.sort(function (a, b) {
+			        return b.value - a.value;
+			    }).slice(0, 6),geoCoordMap2),
+			    symbolSize: function (val) {
+			        return val[2] / 10;
+			    },
+			    showEffectOn: 'emphasis',
+			    rippleEffect: {
+			        brushType: 'stroke'
+			    },
+			    hoverAnimation: true,
+			    label: {
+			        normal: {
+			            formatter: '{b}',
+			            position: 'right',
+			            show: true
+			        }
+			    },
+			    itemStyle: {
+			        normal: {
+			            color: 'lightgreen',
+			            shadowBlur: 10,
+			            shadowColor: '#333'
+			        }
+			    },
+			    zlevel: 1
+			},
+			
+			
+// 	        {
+// 	            type: 'custom',
+// 	            coordinateSystem: 'bmap',
+// 	            renderItem: renderItem,
+// 	            itemStyle: {
+// 	                normal: {
+// 	                    opacity: 0.5
+// 	                }
+// 	            },
+// 	            animation: false,
+// 	            silent: true,
+// 	            data: [0],
+// 	            z: -10
+// 	        }
 	    ]
 	}
     export default{
@@ -307,10 +539,23 @@
         },
 		mounted() {
 			if (option && typeof option === "object") {
-			var myChartPart2 = echarts.init(document.getElementById('container'));
+			let myChartPart = echarts.init(document.getElementById('container'));
 				// this.initEchart('container', myChartPart2);
-				myChartPart2.setOption(option, true);
+				myChartPart.setOption(option, true);
 		}
+		
+		if (optionRight1 && typeof optionRight1 === "object") {
+			let myChartPart = echarts.init(document.getElementById('right1'));
+				// this.initEchart('container', myChartPart2);
+				myChartPart.setOption(optionRight1, true);
+		}
+		
+		if (optionRight2 && typeof optionRight2 === "object") {
+			let myChartPart = echarts.init(document.getElementById('right2'));
+				// this.initEchart('container', myChartPart2);
+				myChartPart.setOption(optionRight2, true);
+		}
+		
 		}
     }
 </script>
