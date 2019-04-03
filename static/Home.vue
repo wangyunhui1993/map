@@ -12,6 +12,7 @@
 				<div class="item"></div>
 			</div>
 		</div>
+		
     </div>
 </template>
 <script>
@@ -19,31 +20,11 @@
 	require('echarts/extension/bmap/bmap') //引入地图文件
 	var option = null;
 		var data = [
-	    {name: '南京动车运用所', value: [118.77254,32.103729],symbol:"image://static/img/blue.jpg",symbolSize :20},
-	    {name: '南京南动车运用所', value: [118.76094,31.945879]},
-	    {name: '合肥南动车运用所', value: [117.272538,31.800093]},
-	    {name: '徐州东动车运用所', value: [117.320925,34.21357]},
+	    {name: '南京动车运用所', value: 100},
+	    {name: '南京南动车运用所', value: 100},
+	    {name: '合肥南动车运用所', value: 100},
+	    {name: '徐州东动车运用所', value: 100},
 	];
-	
-	
-	var data1 = [
-	    {name: '南京动车运用所', value: [118.77254,32.103729],symbol:"image://static/img/blue.jpg",symbolSize :20},
-	];
-		var data2 = [
-	    {name: '南京南动车运用所', value: [118.76094,31.945879],symbol:"image://static/img/yellow.jpg",symbolSize :20},
-	];
-		var data3 = [
-	    {name: '合肥南动车运用所', value: [117.272538,31.800093],symbol:"image://static/img/orange.jpg",symbolSize :20},
-	];
-		var data4 = [
-	    {name: '徐州东动车运用所', value: [117.320925,34.21357],symbol:"image://static/img/danger.png",symbolSize :20},
-	];
-	
-	
-// 	 '南京动车运用所':[118.77254,32.103729],
-// 	'南京南动车运用所':[118.76094,31.945879],
-// 	'合肥南动车运用所':[117.272538,31.800093],
-// 	'徐州东动车运用所':[117.320925,34.21357],
 	
 	
 	var optionRight1 = {
@@ -168,6 +149,12 @@ var optionRight2 = {
 	
 	
 	
+	var data1 = [
+	    {name: '暴雨1', value: 100},
+	    {name: '暴雨2', value: 100},
+	    {name: '暴雨3', value: 100},
+	    {name: '暴雨4', value: 100},
+	];
 	
 	var geoCoordMap1 = {
 	    '暴雨1':[117.866361,32.264109],
@@ -177,6 +164,12 @@ var optionRight2 = {
 	};
 	
 	
+	var data2 = [
+	    {name: '台风1', value: 100},
+	    {name: '台风2', value: 100},
+	    {name: '台风3', value: 100},
+	    {name: '台风4', value: 100},
+	];
 	
 	var geoCoordMap2 = {
 	    '台风':[118.298697,32.642396],
@@ -241,7 +234,7 @@ var optionRight2 = {
 	    tooltip : {
 	        trigger: 'item'
 	    },
-	    bmap: {
+	    bmap1: {
 	        center: [118.114129, 32.500339],
 	        zoom: 8,
 	        roam: true,    //鼠标拖动
@@ -411,45 +404,68 @@ var optionRight2 = {
 // 	                }
 // 	            }
 // 	        },
+// 			{
+// 			        type: 'map',
+// 			        mapType: '上海',
+// 			        label: {
+// 			            emphasis: {
+// 			                textStyle: {
+// 			                    color: '#fff'
+// 			                }
+// 			            }
+// 			        },
+// 			        itemStyle: {
+// 			            normal: {
+// 			                borderColor: '#389BB7',
+// 			                areaColor: '#fff',
+// 			            },
+// 			            emphasis: {
+// 			                areaColor: '#389BB7',
+// 			                borderWidth: 0
+// 			            }
+// 			        },
+// 			        animation: false
+// 			        // animationDurationUpdate: 1000,
+// 			        // animationEasingUpdate: 'quinticInOut'
+// 			    },
 
 
 
 
-
-	        {
-	            name: '动车所',
-	            type: 'effectScatter',
-	            coordinateSystem: 'bmap',
-	            data: convertData(data.sort(function (a, b) {
-	                return b.value - a.value;
-	            }).slice(0, 6),geoCoordMap),
-	            symbolSize: function (val) {
-	                return val[2] / 10;
-	            },
-	            showEffectOn: 'emphasis',
-	            rippleEffect: {
-	                brushType: 'stroke'
-	            },
-	            hoverAnimation: true,
-	            label: {
-	                normal: {
-	                    formatter: '{b}',
-	                    position: 'right',
-	                    show: true
-	                }
-	            },
-	            itemStyle: {
-	                normal: {
-	                    color: '#f4e925',
-	                    shadowBlur: 10,
-	                    shadowColor: '#333'
-						
-	                }
-	            },
-	            zlevel: 1
-	        },
-			
-			
+// 	        {
+// 	            name: '动车所',
+// 	            type: 'effectScatter',
+// 	            coordinateSystem: 'bmap',
+// 	            data: convertData(data.sort(function (a, b) {
+// 	                return b.value - a.value;
+// 	            }).slice(0, 6),geoCoordMap),
+// 	            symbolSize: function (val) {
+// 	                return val[2] / 10;
+// 	            },
+// 	            showEffectOn: 'emphasis',
+// 	            rippleEffect: {
+// 	                brushType: 'stroke'
+// 	            },
+// 	            hoverAnimation: true,
+// 	            label: {
+// 	                normal: {
+// 	                    formatter: '{b}',
+// 	                    position: 'right',
+// 	                    show: true
+// 	                }
+// 	            },
+// 	            itemStyle: {
+// 	                normal: {
+// 	                    color: '#f4e925',
+// 	                    shadowBlur: 10,
+// 	                    shadowColor: '#333'
+// 						
+// 	                }
+// 	            },
+// 	            zlevel: 1
+// 	        },
+// 			
+// 			
 // 			{
 // 			    name: '红色',
 // 			    type: 'effectScatter',
@@ -481,8 +497,8 @@ var optionRight2 = {
 // 			    },
 // 			    zlevel: 1
 // 			},
-			
-			
+// 			
+// 			
 // 			{
 // 			    name: '红色',
 // 			    type: 'effectScatter',
@@ -516,269 +532,178 @@ var optionRight2 = {
 // 			},
 			
 			
+// 	        {
+// 	            type: 'custom',
+// 	            coordinateSystem: 'bmap',
+// 	            renderItem: renderItem,
+// 	            itemStyle: {
+// 	                normal: {
+// 	                    opacity: 0.5
+// 	                }
+// 	            },
+// 	            animation: false,
+// 	            silent: true,
+// 	            data: [0],
+// 	            z: -10
+// 	        }
+
+
+
+
+                {
+                    type: 'map',
+                    mapType: 'shanghai',
+                    label: {
+                        emphasis: {
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderColor: '#389BB7',
+                            areaColor: '#fff',
+                        },
+                        emphasis: {
+                            areaColor: '#389BB7',
+                            borderWidth: 0
+                        }
+                    },
+                    animation: false
+                    // animationDurationUpdate: 1000,
+                    // animationEasingUpdate: 'quinticInOut'
+                }
+
+
+
+
 
 	    ]
 	}
 	
+	
+	
+	
+	
+	
+	
+	var provinces = ['shanghai', 'hebei','shanxi','neimenggu','liaoning','jilin','heilongjiang','jiangsu','zhejiang','anhui','fujian','jiangxi','shandong','henan','hubei','hunan','guangdong','guangxi','hainan','sichuan','guizhou','yunnan','xizang','shanxi1','gansu','qinghai','ningxia','xinjiang', 'beijing', 'tianjin', 'chongqing', 'xianggang', 'aomen'];
+var provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林','黑龙江',  '江苏', '浙江', '安徽', '福建', '江西', '山东','河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门'];
+
+// function showProvince() {
+//     var name = provinces[currentIdx];
+// 
+//     // myChart.showLoading();
+// 
+//     // $.get('vendors/echarts/map/json/province/' + name + '.json', function (geoJson) {
+// 
+//         // myChart.hideLoading();
+// 
+//         echarts.registerMap(name, require('echarts/map/json/province/anhui.json'));
+// 		let myChartPart = echarts.init(document.getElementById('container'));
+//         myChartPart.setOption({} = option
+// 		{
+//             backgroundColor: '#404a59',
+//             title: {
+//                 text: provincesText[currentIdx],
+//                 left: 'center',
+//                 textStyle: {
+//                     color: '#fff'
+//                 }
+//             },
+//             series: [
+//                 {
+//                     type: 'map',
+//                     mapType: 'shanghai',
+//                     label: {
+//                         emphasis: {
+//                             textStyle: {
+//                                 color: '#fff'
+//                             }
+//                         }
+//                     },
+//                     itemStyle: {
+//                         normal: {
+//                             borderColor: '#389BB7',
+//                             areaColor: '#fff',
+//                         },
+//                         emphasis: {
+//                             areaColor: '#389BB7',
+//                             borderWidth: 0
+//                         }
+//                     },
+//                     animation: false
+//                     // animationDurationUpdate: 1000,
+//                     // animationEasingUpdate: 'quinticInOut'
+//                 }
+//             ]
+//         }
+// 		);
+//     // });
+// }
 
 
-var customBlueImg=[
-	{coordinate:[117.272538,31.800093],itemStyle:{normal:{color:"#00CED1"},name:'蓝色1'},tooltip: {
-						trigger: 'item',
-						formatter: '{a}<br/>{b}'
-					},},
-]
-var customYellowImg=[
-	{coordinate:[118.77254,32.103729],itemStyle:{normal:{color:"#00CED1"},name:'蓝色1'},tooltip: {
-						trigger: 'item',
-						formatter: '{a}<br/>{b}'
-					},},
-]
-var customOrangeImg=[
-	{coordinate:[118.76094,31.945879],itemStyle:{normal:{color:"#00CED1"},name:'蓝色1'},tooltip: {
-						trigger: 'item',
-						formatter: '{a}<br/>{b}'
-					},},
-]
-var customDangerImg=[
-	{coordinate:[117.320925,34.21357],itemStyle:{normal:{color:"#00CED1"},name:'蓝色1'},tooltip: {
-						trigger: 'item',
-						formatter: '{a}<br/>{b}'
-					},},
-]
+
+
 
 
 
 
 var option3={
-            backgroundColor: new echarts.graphic.RadialGradient(0.5, 0.5, 0.5, [{
-                     // 0% 处的颜色   
-                    offset: 0, color: '#032d60'  },
-                   {
-                    // 100% 处的颜色
-                   offset: 1, color: '#030e60' 
-                  }], false),
+            backgroundColor: '#404a59',
             title: {
-                text: '',
+                text: 'anhui',
                 left: 'center',
                 textStyle: {
                     color: '#fff'
                 }
             },
-			geo: {
-        map: 'ja',    //江苏和安徽的地图
-        label: {
-            emphasis: {
-                show: true,
-				color:'#fff',
-            }
-        },
-        itemStyle: {
-            normal: {
-                areaColor: '#004981',
-                borderColor: '#111',
-				borderType :'dashed',
-				shadowBlur: 1,
-				shadowColor:'#029fd4',
-// 				shadowOffsetX :1,
-// 				shadowOffsetY :1
-            },
-			
-            emphasis: {
-                areaColor: '#004981'
-            },
-        },
-		silent:false,
-    },
-	
-	legend: {
-               type: "plain",
-               show: true,
-               orient: 'vertical',
-               top: 'top',
-               right: 'right',
-			   itemHeight :20,
-               data: [
-                   {
-                       name: "蓝色预警",
-                       icon: "image://static/img/blue.jpg",
-                       textStyle: {
-                           color: "#fff"
-                       }
-                   },
-				    {
-				       name: "黄色预警",
-				       icon: "image://static/img/yellow.jpg",
-				       textStyle: {
-				           color: "#fff"
-				       }
-				   },
-				    {
-				       name: "橙色预警",
-				       icon: "image://static/img/orange.jpg",
-				       textStyle: {
-				           color: "#fff"
-				       }
-				   },
-				    {
-				       name: "危险预警",
-				       icon: "image://static/img/danger.png",
-				       textStyle: {
-				           color: "#fff"
-				       }
-				   }
-               ]
-           },
-	tooltip : {
-        trigger: 'item'
-    },
             series: [
-// 				{
-//                     name: "蓝色预警",
-//                     type: 'custom',//配置显示方式为用户自定义
-//                     coordinateSystem: 'geo',
-//                     itemStyle: {
-//                         normal: {
-//                             color: '#46bee9'
-//                         }
-//                     },
-// // 					tooltip :{
-// // 						position :[10,10]
-// // 					},
-//                     renderItem: function (params, api) {//具体实现自定义图标的方法
-//                         return {
-//                             type: 'image',
-//                             style: {
-//                                 image: "static/img/blue.jpg",
-// 								width: 20,
-// 								height: 20,
-//                                 x: api.coord([
-//                                     customBlueImg[params.dataIndex].coordinate[0], customBlueImg[params.dataIndex]
-//                                         .coordinate[1]
-//                                 ])[0],
-//                                 y: api.coord([
-//                                     customBlueImg[params.dataIndex].coordinate[0], customBlueImg[params.dataIndex]
-//                                         .coordinate[1]
-//                                 ])[1]
-//                             }
-//                         }
-//                     },
-//                     data: customBlueImg
-//                 },
-				        {
-				            name: '蓝色预警',
-				            type: 'effectScatter',
-				            coordinateSystem: 'geo',
-				            data: data1,
-				            
-				            showEffectOn: 'emphasis',
-				            rippleEffect: {
-				                brushType: 'stroke'
-				            },
-				            hoverAnimation: true,
-				            label: {
-				                normal: {
-				                    formatter: '{b}',
-				                    position: 'right',
-				                    show: true
-				                }
-				            },
-				            itemStyle: {
-				                normal: {
-				                    color: '#f4e925',
-				                    shadowBlur: 10,
-				                    shadowColor: '#333'
-									
-				                }
-				            },
-				            zlevel: 1
+                {
+                    type: 'map',
+                    mapType: 'anhui',
+                    label: {
+                        emphasis: {
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderColor: '#389BB7',
+                            areaColor: '#fff',
+                        },
+                        emphasis: {
+                            areaColor: '#389BB7',
+                            borderWidth: 0
+                        }
+                    },
+                    animation: false
+                },
+				 {
+				    type: 'map',
+				    mapType: 'jiangsu',
+				    label: {
+				        emphasis: {
+				            textStyle: {
+				                color: '#fff'
+				            }
+				        }
+				    },
+				    itemStyle: {
+				        normal: {
+				            borderColor: '#389BB7',
+				            areaColor: '#fff',
 				        },
-						
-						
-						{
-						    name: '黄色预警',
-						    type: 'effectScatter',
-						    coordinateSystem: 'geo',
-						    data: data2,
-						    showEffectOn: 'emphasis',
-						    rippleEffect: {
-						        brushType: 'stroke'
-						    },
-						    hoverAnimation: true,
-						    label: {
-						        normal: {
-						            formatter: '{b}',
-						            position: 'right',
-						            show: true
-						        }
-						    },
-						    itemStyle: {
-						        normal: {
-						            color: '#f4e925',
-						            shadowBlur: 10,
-						            shadowColor: '#333'
-									
-						        }
-						    },
-						    zlevel: 1
-						},
-						
-						{
-						    name: '橙色预警',
-						    type: 'effectScatter',
-						    coordinateSystem: 'geo',
-						    data: data3,
-						    showEffectOn: 'emphasis',
-						    rippleEffect: {
-						        brushType: 'stroke'
-						    },
-						    hoverAnimation: true,
-						    label: {
-						        normal: {
-						            formatter: '{b}',
-						            position: 'right',
-						            show: true
-						        }
-						    },
-						    itemStyle: {
-						        normal: {
-						            color: '#f4e925',
-						            shadowBlur: 10,
-						            shadowColor: '#333'
-									
-						        }
-						    },
-						    zlevel: 1
-						},
-						
-						{
-						    name: '危险预警',
-						    type: 'effectScatter',
-						    coordinateSystem: 'geo',
-						    data: data4,
-						    showEffectOn: 'emphasis',
-						    rippleEffect: {
-						        brushType: 'stroke'
-						    },
-						    hoverAnimation: true,
-						    label: {
-						        normal: {
-						            formatter: '{b}',
-						            position: 'right',
-						            show: true
-						        }
-						    },
-						    itemStyle: {
-						        normal: {
-						            color: '#f4e925',
-						            shadowBlur: 10,
-						            shadowColor: '#333'
-									
-						        }
-						    },
-						    zlevel: 1
-						},
-
+				        emphasis: {
+				            areaColor: '#389BB7',
+				            borderWidth: 0
+				        }
+				    },
+				    animation: false
+				}
             ]
         }
 
@@ -820,13 +745,14 @@ var currentIdx = 9;
         components:{
         },
 		mounted() {
-// 			if (option && typeof option === "object") {
+			if (option && typeof option === "object") {
 // 			let myChartPart = echarts.init(document.getElementById('container'));
 // 				myChartPart.setOption(option, true);
-// 		}
+		}
 		
 		if (option3 && typeof option3 === "object") {
-			echarts.registerMap('ja', require('@/json/jiangsu.json'));
+			echarts.registerMap('anhui', require('echarts/map/json/province/anhui.json'));
+			// echarts.registerMap('jiangsu', require('echarts/map/json/province/jiangsu.json'));
 					let myChartPart = echarts.init(document.getElementById('container'));
 						myChartPart.setOption(option3, true);
 				}
